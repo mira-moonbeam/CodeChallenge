@@ -1,0 +1,73 @@
+<div class="root">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <ul id="favoritesList" v-if="!favEmpty">
+                Favorites:
+          <li v-for="(item, index) in listData" :key="item.id">
+                    <!-- Yes i know but i'm in too deep to change it now -->
+            <div v-if="!checkIfFav(item.id)">
+                &emsp; <span style="display: inline-block; width: 200px;">{{item.name}}</span>: <span style="display: inline-block; width: 200px;">{{item.phone}} </span>
+                        <!-- UNFAVORITE BUTTON -->
+                        <button @click="fav(item.id)" style="background-color: Transparent; border: none;"><i class="fa-solid fa-bookmark"></i></button>
+            </div>
+            </li>
+        </ul>
+            
+        <div class="sort-orders">
+          <a v-for="sortkey in Object.keys(orderedListOptions)"
+                     role="button"
+                     class="btn btn-outline-primary"
+             @click="sortOrder = sortkey" 
+             v-bind:class="{active: sortOrder == sortkey}">
+            {{sortkey}}
+          </a>
+        </div>
+                
+        <div>
+          <input type="text" v-model="search" class="form-control" placeholder="Name Search">
+        </div>
+    
+        <ul id="mainList">
+          <li v-for="(item, index) in filteredList" :key="item.id">
+            
+            <div>
+                        <span style="display: inline-block; width: 20px;">{{item.id}}</span> <span style="display: inline-block; width: 20px;">-</span><span style="display: inline-block; width: 200px;">{{item.name}} </span>
+                        <!-- SHOW/HIDE BUTTON -->
+              <button @click="showHide(item.id)" style="background-color: Transparent; border: none;"><i class="fa-regular fa-eye"></i></button>
+                        <!-- FAVORITE BUTTON -->
+                            <button @click="fav(item.id)" v-if="checkIfFav(item.id)" style="background-color: Transparent; border: none;"><i class="fa-regular fa-bookmark"></i></button>
+                         <span v-if="!checkIfFav(item.id)"><i class="fa-solid fa-heart"></i></span> 
+             
+              <div v-if="!checkIfHidden(item.id)">
+                <ul id="personalInformation">
+                  <li> Username: {{item.username}} </li>
+                  <li id="contact"><b>Contact</b>
+                    <ul id="contactList">
+                      <li> Phone: {{item.phone}} </li>
+                      <li> eMail: {{item.email}} </li>
+                      <li> Address :
+                        <ul id="address">
+                          <li> {{item.address.suite}}, {{item.address.street}} </li>
+                          <li> {{item.address.city}}, {{item.address.zipcode}} </li>
+                          <li> Geographic Coordinate: ({{item.address.geo.lat}}, {{item.address.geo.lng}})</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li id="professional"> <b>Professional Details</b>
+                    <ul id="profList">
+                      <li> Website: {{item.website}} </li>
+                      <li> Company: {{item.company.name}} 
+                        <ul id="company">
+                          <li> Catchphrase: {{item.company.catchPhrase}} </li>
+                          <li> Service: {{item.company.bs}} </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>

@@ -1,0 +1,47 @@
+body {
+    background: #f2f2f2;
+    color: #333;
+    font-size: 18px;
+    line-height: 1.5;
+    padding: 20px;
+}
+
+    /* Style search bar */
+input[type="text"] {
+    margin: 24px 0 24px;
+}
+
+/* sort buttons */
+.sort-orders a {
+    padding: 10px 14px;
+    margin: 0 10px 0 0;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#favoritesList {
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px #888888;
+    padding: 10px;
+}
+
+#mainList ul {
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px #888888;
+    padding: 10px;
+}
+
+#contactList ul{
+    background-color: #D3D3D3;
+}
+
+#profList ul{
+    background-color: #D3D3D3;
+}
